@@ -31,7 +31,20 @@ body{
     text-align:center;
 }
 
-h1 span{color:#00ff88}
+/* 🌈 COLORFUL NAME */
+h1{
+    font-size:28px;
+    font-weight:bold;
+    background:linear-gradient(45deg, red, yellow, lime, cyan, blue, magenta);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:colorMove 5s linear infinite;
+}
+
+@keyframes colorMove{
+    0%{filter:hue-rotate(0deg);}
+    100%{filter:hue-rotate(360deg);}
+}
 
 input{
     width:100%;
@@ -76,6 +89,24 @@ input{
     margin-top:10px;
 }
 
+/* 🔄 LOADER */
+.loader{
+    margin-top:20px;
+    border:5px solid #222;
+    border-top:5px solid #00ff88;
+    border-radius:50%;
+    width:40px;
+    height:40px;
+    animation:spin 1s linear infinite;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
 .footer{
     margin-top:15px;
     font-size:12px;
@@ -89,10 +120,9 @@ input{
 <div class="app">
 <div class="card">
 
-<h1>HAMEED <span>ULLAH</span></h1>
+<h1>HAMEED ULLAH</h1>
 <p>Facebook Video Downloader</p>
 
-<!-- CHANNEL + TOOLKIT -->
 <a class="link-btn" href="https://whatsapp.com/channel/0029Vb7v80n72WTshGXMjm2x" target="_blank">
 <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
 </a>
@@ -126,7 +156,8 @@ async function download(){
         return;
     }
 
-    result.innerHTML = "Loading...";
+    // 🔄 LOADER SHOW
+    result.innerHTML = "<div class='loader'></div>";
 
     try{
         let res = await fetch(API + encodeURIComponent(url));
